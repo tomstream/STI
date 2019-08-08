@@ -201,10 +201,7 @@ def train_batch(input_batches, input_lengths, input_interval, input_mask, target
 
     decoder_h = th.sum(encoder_hidden[0] * input_lengths, dim=1)
     decoder_c = th.sum(encoder_hidden[1] * input_lengths, dim=1)
-
-    if th.cuda.is_available():
-        decoder_h = th.zeros(decoder_h.size(0),decoder_h.size(1)).cuda()
-        decoder_c = th.zeros(decoder_c.size(0),decoder_c.size(1)).cuda()
+    
     decoder_hidden = (decoder_h, decoder_c)
 
     max_length = input_batches.size(1)
